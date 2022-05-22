@@ -7,7 +7,7 @@
   </head>
 
   <body>
-    <div class="card">
+    <div class="card" id="cola" onclick="buttonClick(event);">
       <div class="circle" style="--clr: #f40103">
         <img src="./images/cocacola_logo.png" class="logo" />
       </div>
@@ -20,9 +20,10 @@
         </p>
         <a href="#">Explore</a>
       </div>
+
       <img src="./images/cocacola.png" class="product_img" />
     </div>
-    <div class="card">
+    <div class="card" id="sprite" onclick="buttonClick(event);">
       <div class="circle" style="--clr: #02953a">
         <img src="./images/sprite_logo.png" class="logo" />
       </div>
@@ -36,6 +37,12 @@
       </div>
       <img src="./images/sprite.png" class="product_img" />
     </div>
-    <!-- <script src="src/index.js"></script> -->
+    <script>
+      const buttonClick = (e) => {
+        const elm = e.currentTarget;
+        // aタグクリックの時は発火しない
+        if (e.target.tagName !== "A") elm.classList.toggle("card-clicked");
+      };
+    </script>
   </body>
 </html>
