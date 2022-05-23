@@ -7,41 +7,73 @@
   </head>
 
   <body>
-    <div class="card" id="cola" onclick="buttonClick(event);">
-      <div class="circle" style="--clr: #f40103">
-        <img src="./images/cocacola_logo.png" class="logo" />
-      </div>
-      <div class="content">
-        <h2>CocaCola</h2>
-        <p>
-          This content is imitate from youtube This content is imitate from
-          youtube This content is imitate from youtube This content is imitate
-          from youtube This content is imitate from youtube
-        </p>
-        <a href="#">Explore</a>
-      </div>
+    <div>
+      <div class="card" id="cola" onclick="buttonClick(event);">
+        <div class="circle" style="--clr: #f40103">
+          <img src="./images/cocacola_logo.png" class="logo" />
+        </div>
+        <div class="content">
+          <h2>CocaCola</h2>
+          <p>
+            This content is imitate from youtube This content is imitate from
+            youtube This content is imitate from youtube This content is imitate
+            from youtube This content is imitate from youtube
+          </p>
+          <a href="#">Explore</a>
+        </div>
 
-      <img src="./images/cocacola.png" class="product_img" />
-    </div>
-    <div class="card" id="sprite" onclick="buttonClick(event);">
-      <div class="circle" style="--clr: #02953a">
-        <img src="./images/sprite_logo.png" class="logo" />
+        <img src="./images/cocacola.png" class="product_img" />
       </div>
-      <div class="content">
-        <h2>Sprite</h2>
-        <p>
-          This content is imitate from youtube This content is imitate from
-          youtube This content is imitate from youtube
-        </p>
-        <a href="#">Explore</a>
+      <div class="card" id="sprite" onclick="buttonClick(event);">
+        <div class="circle" style="--clr: #02953a">
+          <img src="./images/sprite_logo.png" class="logo" />
+        </div>
+        <div class="content">
+          <h2>Sprite</h2>
+          <p>
+            This content is imitate from youtube This content is imitate from
+            youtube This content is imitate from youtube
+          </p>
+          <a href="#">Explore</a>
+        </div>
+        <img src="./images/sprite.png" class="product_img" />
       </div>
-      <img src="./images/sprite.png" class="product_img" />
     </div>
     <script>
+      const colorMap = {
+        cola: "red",
+        sprite: "green",
+      };
+      const body = document.getElementsByTagName("body")[0];
       const buttonClick = (e) => {
         const elm = e.currentTarget;
+        console.log(elm);
+        const siblingList = [];
+        let nextSibling = elm; // initialize
+        let prevSibling = elm; // initialize
+
+        // 選択した要素の兄弟要素を全て取得する。
+        for (let i = 0; i <= 100; i++) {
+          prevSibling = prevSibling.previousElementSibling;
+          if (!prevSibling) break;
+          siblingList.unshift(prevSibling);
+        }
+
+        for (let i = 0; i <= 100; i++) {
+          nextSibling = nextSibling.nextElementSibling;
+          if (!nextSibling) break;
+          siblingList.push(nextSibling);
+        }
+
         // aタグクリックの時は発火しない
-        if (e.target.tagName !== "A") elm.classList.toggle("card-clicked");
+        if (e.target.tagName !== "A") {
+          const toggle = elm.classList.toggle("card-clicked");
+          // 選択した要素以外をdisableにして要素を閉じる。
+          siblingList.map((sibling) => sibling.setAttribute("class", "card"));
+          toggle
+            ? (body.style.backgroundColor = colorMap[elm.id])
+            : (body.style.backgroundColor = "white");
+        }
       };
     </script>
   </body>
