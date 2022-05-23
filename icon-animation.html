@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="icon_style.css" />
   </head>
 
-  <body>
-    <div>
+  <body onclick="bodyClick(event);">
+    <div class="cards">
       <div class="card" id="cola" onclick="buttonClick(event);">
         <div class="circle" style="--clr: #f40103">
           <img src="./images/cocacola_logo.png" class="logo" />
@@ -24,6 +24,7 @@
 
         <img src="./images/cocacola.png" class="product_img" />
       </div>
+
       <div class="card" id="sprite" onclick="buttonClick(event);">
         <div class="circle" style="--clr: #02953a">
           <img src="./images/sprite_logo.png" class="logo" />
@@ -39,6 +40,11 @@
         <img src="./images/sprite.png" class="product_img" />
       </div>
     </div>
+
+    <!-- <div class="a">
+      <div class="aa">a</div>
+      <div>b</div>
+    </div> -->
     <script>
       const colorMap = {
         cola: "red",
@@ -47,12 +53,11 @@
       const body = document.getElementsByTagName("body")[0];
       const buttonClick = (e) => {
         const elm = e.currentTarget;
-        console.log(elm);
         const siblingList = [];
         let nextSibling = elm; // initialize
         let prevSibling = elm; // initialize
 
-        // 選択した要素の兄弟要素を全て取得する。
+        // 選択した要素の兄弟要素を全て(一応100件の制限をかけている)取得する。
         for (let i = 0; i <= 100; i++) {
           prevSibling = prevSibling.previousElementSibling;
           if (!prevSibling) break;
@@ -67,13 +72,35 @@
 
         // aタグクリックの時は発火しない
         if (e.target.tagName !== "A") {
+          console.log("select", elm);
           const toggle = elm.classList.toggle("card-clicked");
+
           // 選択した要素以外をdisableにして要素を閉じる。
-          siblingList.map((sibling) => sibling.setAttribute("class", "card"));
+          siblingList.forEach((sibling) => {
+            const otherDisplay = sibling.style.display;
+            otherDisplay === "none"
+              ? (sibling.style.display = "")
+              : (sibling.style.display = "none");
+
+            sibling.setAttribute("class", "card");
+          });
           toggle
             ? (body.style.backgroundColor = colorMap[elm.id])
             : (body.style.backgroundColor = "white");
         }
+      };
+
+      const bodyClick = (e) => {
+        if (e.target.tagName !== "BODY") return; // iconの外でしか発火しないようにする
+        const icons = [...body.children[0].children];
+
+        icons.forEach((icon) => {
+          if (icon.classList.contains("card-clicked")) {
+            icon.setAttribute("class", "card");
+            body.style.backgroundColor = "white";
+          }
+          icon.style.display = ""; // 全部のiconを表示させる
+        });
       };
     </script>
   </body>
