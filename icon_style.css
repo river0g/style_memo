@@ -19,7 +19,7 @@ body {
 .cards {
   /* border: 1px solid palegreen; */
   position: absolute;
-  top: calc(50% - 350px);
+  /* top: calc(50% - 350px); */
   left: calc(50% - 500px);
   right: 50%;
 }
@@ -37,6 +37,7 @@ body {
   justify-content: flex-start;
   align-items: center;
 }
+
 .card-clicked {
   width: 600px;
   transition-delay: 0s;
@@ -116,6 +117,7 @@ body {
   display: inline-block;
   text-decoration: none;
   font-weight: 500;
+  /* border: 2px solid skyblue; */
 }
 
 .card .product_img {
@@ -136,7 +138,7 @@ body {
 
 .other {
   /* visibility: hidden; */
-  display: none;
+  /* display: none; */
 }
 
 /* responsive */

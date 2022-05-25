@@ -25,7 +25,7 @@
         <img src="./images/cocacola.png" class="product_img" />
       </div>
 
-      <div class="card" id="sprite" onclick="buttonClick(event);">
+      <!-- <div class="card" id="sprite" onclick="buttonClick(event);">
         <div class="circle" style="--clr: #02953a">
           <img src="./images/sprite_logo.png" class="logo" />
         </div>
@@ -38,8 +38,60 @@
           <a href="#">Explore</a>
         </div>
         <img src="./images/sprite.png" class="product_img" />
+      </div> -->
+
+      <div class="card" id="blackpink" onclick="buttonClick(event)">
+        <div class="circle" style="--clr: #000000">
+          <img src="./group-images/Blackpink_logo_pinkver.png" class="logo" />
+        </div>
+        <div class="content">
+          <h2>BLACKPINK</h2>
+          <p>
+            This content is imitate from youtube This content is imitate from
+            youtube This content is imitate from youtube
+          </p>
+          <a href="#">Explore</a>
+        </div>
+        <img
+          src="./group-images/blackpink_thumbnail1.png"
+          class="product_img"
+        />
+      </div>
+
+      <div class="card" id="aespa" onclick="buttonClick(event)">
+        <div class="circle" style="--clr: #b59aff">
+          <img src="./group-images/aespa_logo1.png" class="logo" />
+        </div>
+        <div class="content">
+          <h2>aespa</h2>
+          <p>
+            This content is imitate from youtube This content is imitate from
+            youtube This content is imitate from youtube
+          </p>
+          <a href="#">Explore</a>
+        </div>
+        <img src="./group-images/aespa_thumbnail1.png" class="product_img" />
+      </div>
+
+      <div class="card" id="nmixx" onclick="buttonClick(event)">
+        <div class="circle" style="--clr: #000000">
+          <img src="./group-images/nmixx_logo1.png" class="logo" />
+        </div>
+        <div class="content">
+          <h2>Nmixx</h2>
+          <p>
+            This content is imitate from youtube This content is imitate from
+            youtube This content is imitate from youtube
+          </p>
+          <a href="#">Explore</a>
+        </div>
+        <img src="./group-images/nmixx_thumbnail.jpg" class="product_img" />
       </div>
     </div>
+    <!-- <div style="background-color: black"> -->
+    <!-- <img src="Blackpink_thumbnail.jpg" alt="aespa" /> -->
+    <!-- <img src="Blackpink_thumbnail.jpg" alt="aespa" /> -->
+    <!-- </div> -->
 
     <!-- <div class="a">
       <div class="aa">a</div>
@@ -49,6 +101,8 @@
       const colorMap = {
         cola: "red",
         sprite: "green",
+        blackpink: "black",
+        aespa: "#b59aff",
       };
       const body = document.getElementsByTagName("body")[0];
       const buttonClick = (e) => {
@@ -72,10 +126,18 @@
 
         // aタグクリックの時は発火しない
         if (e.target.tagName !== "A") {
-          console.log("select", elm);
           const toggle = elm.classList.toggle("card-clicked");
 
           // 選択した要素以外をdisableにして要素を閉じる。
+          // siblingList.forEach((sibling) => {
+          //   const otherDisplay = sibling.style.visibility;
+          //   console.log(otherDisplay);
+          //   otherDisplay === "hidden"
+          //     ? (sibling.style.visibility = "")
+          //     : (sibling.style.visibility = "hidden");
+
+          //   sibling.setAttribute("class", "card");
+          // });
           siblingList.forEach((sibling) => {
             const otherDisplay = sibling.style.display;
             otherDisplay === "none"
@@ -84,6 +146,7 @@
 
             sibling.setAttribute("class", "card");
           });
+
           toggle
             ? (body.style.backgroundColor = colorMap[elm.id])
             : (body.style.backgroundColor = "white");
@@ -100,8 +163,18 @@
             body.style.backgroundColor = "white";
           }
           icon.style.display = ""; // 全部のiconを表示させる
+          // icon.style.visibility = ""; // 全部のiconを表示させる
         });
       };
     </script>
   </body>
 </html>
+
+<!-- 
+なぜインターネット開発に特化しているか→楽しいから
+他のSIerとの比較ではインバウンド受注なので相手のシステムに限らずコミットする形なのでそこが強み。
+キャリアパス→スペシャリストかジェネラリストか。。。キャリアパスは一緒に作るものだと思うので能動的に。
+評価制度 → 実力評価主義。
+
+履歴書とSPIの点数
+-->
